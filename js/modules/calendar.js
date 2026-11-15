@@ -26,3 +26,7 @@ Calendar.go = n => {
   if (m < 0) { m = 11; y--; } if (m > 11) { m = 0; y++; }
   Calendar.ym = { y, m }; Calendar.render();
 };
+Calendar.cellExtras.push(key => {
+  const n = Store.get('tasks', []).filter(t => t.due === key && t.status !== 'Done').length;
+  return n ? `<i class="dot ${key < todayStr() ? 'late' : ''}" title="${n} zadatak(a)"></i>` : '';
+});

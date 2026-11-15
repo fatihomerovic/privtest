@@ -6,3 +6,4 @@
 .cal-d.today{outline:2px solid var(--accent-2)}
 .cal-d.sel{background:rgba(139,92,246,.25);border-color:var(--accent)}
 @media(max-width:600px){.cal-d{min-height:44px;padding:4px}}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent-2)} .dot.late{background:var(--danger)}
