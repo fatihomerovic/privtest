@@ -3,3 +3,4 @@
 .p-High{color:var(--danger);border-color:var(--danger)}
 .p-Medium{color:var(--warn);border-color:var(--warn)}
 .p-Low{color:var(--ok);border-color:var(--ok)}
+.st{cursor:pointer;color:var(--accent-2);border-color:var(--accent)}

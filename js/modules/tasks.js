@@ -33,3 +33,6 @@ Tasks.actions.edit = id => {
 };
 Tasks.rowExtras.unshift(t => `<button class="btn ghost" data-act="edit" data-id="${t.id}" title="Uredi">✎</button>`);
 Tasks.rowExtras.unshift(t => `<span class="badge p-${t.prio}">${t.prio}</span>${t.due ? `<span class="muted small">${t.due}</span>` : ''}`);
+Tasks.next = { 'Todo': 'In Progress', 'In Progress': 'Done', 'Done': 'Todo' };
+Tasks.actions.status = id => { const t = Tasks.all().find(x => x.id === id); Tasks.update(id, { status: Tasks.next[t.status] }); };
+Tasks.rowExtras.unshift(t => `<button class="badge st" data-act="status" data-id="${t.id}" title="Promijeni status">${t.status}</button>`);
