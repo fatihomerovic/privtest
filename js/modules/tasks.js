@@ -17,3 +17,9 @@ Tasks.render = function () {
   const l = Tasks.all().filter(t => Tasks.filterFns.every(f => f(t)));
   $('#task-list').innerHTML = l.map(Tasks.row).join('') || '<li class="muted">Nema zadataka.</li>';
 };
+Tasks.add = function () {
+  if (!$('#t-title').value.trim()) return toast('Unesi naziv zadatka');
+  const l = Tasks.all();
+  l.push({ id: Store.uid(), title: $('#t-title').value.trim(), due: $('#t-due').value, prio: $('#t-prio').value, status: 'Todo', subject: ($('#t-subj') || {}).value || '', created: Date.now() });
+  Tasks.save(l); $('#task-form').reset(); Tasks.render(); toast('Zadatak dodan');
+};
