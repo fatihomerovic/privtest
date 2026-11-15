@@ -23,3 +23,7 @@ Tasks.add = function () {
   l.push({ id: Store.uid(), title: $('#t-title').value.trim(), due: $('#t-due').value, prio: $('#t-prio').value, status: 'Todo', subject: ($('#t-subj') || {}).value || '', created: Date.now() });
   Tasks.save(l); $('#task-form').reset(); Tasks.render(); toast('Zadatak dodan');
 };
+Tasks.update = (id, patch) => { Tasks.save(Tasks.all().map(t => t.id === id ? { ...t, ...patch } : t)); Tasks.render(); };
+Tasks.actions.done = id => { const t = Tasks.all().find(x => x.id === id); Tasks.update(id, { status: t.status === 'Done' ? 'Todo' : 'Done' }); };
+Tasks.actions.del = id => { Tasks.save(Tasks.all().filter(t => t.id !== id)); Tasks.render(); toast('Zadatak obrisan'); };
+Tasks.rowExtras.push(t => `<button class="btn ghost" data-act="done" data-id="${t.id}" title="Završi">${t.status === 'Done' ? '↩' : '✓'}</button><button class="btn ghost" data-act="del" data-id="${t.id}" title="Obriši">✕</button>`);

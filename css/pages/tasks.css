@@ -1,1 +1,2 @@
 /* tasks page styles */
+.item.done .grow{text-decoration:line-through;opacity:.5}
