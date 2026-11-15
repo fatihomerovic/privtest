@@ -27,3 +27,11 @@ Analytics.drawers.push(({ ses }) => {
     options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
   });
 });
+Analytics.drawers.push(({ tasks }) => {
+  const st = ['Todo', 'In Progress', 'Done'];
+  Analytics.chart('ch-status', 'Zadaci po statusu', {
+    type: 'doughnut',
+    data: { labels: st, datasets: [{ data: st.map(s => tasks.filter(t => t.status === s).length), backgroundColor: ['#6B7280', '#8B5CF6', '#34D399'], borderWidth: 0 }] },
+    options: { cutout: '65%' }
+  });
+});
