@@ -19,3 +19,11 @@ Analytics.chart = (id, title, cfg) => {
   if (Analytics.charts[id]) Analytics.charts[id].destroy();
   Analytics.charts[id] = new Chart(c, cfg);
 };
+Analytics.drawers.push(({ ses }) => {
+  const days = [...Array(7)].map((_, k) => { const d = new Date(); d.setDate(d.getDate() - 6 + k); return d; });
+  Analytics.chart('ch-week', 'Minute učenja (zadnjih 7 dana)', {
+    type: 'bar',
+    data: { labels: days.map(d => d.toLocaleDateString('bs', { weekday: 'short' })), datasets: [{ data: days.map(d => ses.filter(s => s.date === dateKey(d)).reduce((a, s) => a + s.minutes, 0)), backgroundColor: '#8B5CF6', borderRadius: 6 }] },
+    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+  });
+});
