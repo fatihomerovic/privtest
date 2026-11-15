@@ -32,3 +32,4 @@ Tasks.actions.edit = id => {
   if (n && n.trim()) { Tasks.update(id, { title: n.trim() }); toast('Zadatak izmijenjen'); }
 };
 Tasks.rowExtras.unshift(t => `<button class="btn ghost" data-act="edit" data-id="${t.id}" title="Uredi">✎</button>`);
+Tasks.rowExtras.unshift(t => `<span class="badge p-${t.prio}">${t.prio}</span>${t.due ? `<span class="muted small">${t.due}</span>` : ''}`);

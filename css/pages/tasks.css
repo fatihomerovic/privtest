@@ -1,2 +1,5 @@
 /* tasks page styles */
 .item.done .grow{text-decoration:line-through;opacity:.5}
+.p-High{color:var(--danger);border-color:var(--danger)}
+.p-Medium{color:var(--warn);border-color:var(--warn)}
+.p-Low{color:var(--ok);border-color:var(--ok)}
