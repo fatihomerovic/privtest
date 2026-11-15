@@ -21,3 +21,8 @@ Calendar.render = function () {
   }
   $('#c-grid').innerHTML = h;
 };
+Calendar.go = n => {
+  let { y, m } = Calendar.ym; m += n;
+  if (m < 0) { m = 11; y--; } if (m > 11) { m = 0; y++; }
+  Calendar.ym = { y, m }; Calendar.render();
+};
