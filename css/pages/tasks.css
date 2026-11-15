@@ -4,3 +4,4 @@
 .p-Medium{color:var(--warn);border-color:var(--warn)}
 .p-Low{color:var(--ok);border-color:var(--ok)}
 .st{cursor:pointer;color:var(--accent-2);border-color:var(--accent)}
+.chip{font-size:.72rem;padding:3px 9px;border-radius:99px;background:color-mix(in srgb,var(--c) 25%,transparent);border:1px solid var(--c)}

@@ -41,3 +41,7 @@ Tasks.filterFns.push(t => t.title.toLowerCase().includes(Tasks.state.q.toLowerCa
 Tasks.toolbars.push(() => '<select data-k="status"><option value="all">Svi statusi</option><option>Todo</option><option>In Progress</option><option>Done</option></select><select data-k="prio"><option value="all">Svi prioriteti</option><option>Low</option><option>Medium</option><option>High</option></select>');
 Tasks.filterFns.push(t => Tasks.state.status === 'all' || t.status === Tasks.state.status);
 Tasks.filterFns.push(t => Tasks.state.prio === 'all' || t.prio === Tasks.state.prio);
+Tasks.subjOpts = () => '<option value="">Predmet</option>' + Store.get('subjects', []).map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+Tasks.formExtras.push(() => `<select id="t-subj">${Tasks.subjOpts()}</select>`);
+Tasks.rowExtras.push(t => { const s = Store.get('subjects', []).find(x => x.id === t.subject); return s ? `<span class="chip" style="--c:${esc(s.color)}">${esc(s.name)}</span>` : ''; });
+{ const r = Tasks.render; Tasks.render = function () { const sel = $('#t-subj'); if (sel) { const v = sel.value; sel.innerHTML = Tasks.subjOpts(); sel.value = v; } r(); }; }
