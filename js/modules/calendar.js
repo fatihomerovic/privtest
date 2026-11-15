@@ -36,3 +36,10 @@ Calendar.panel = function () {
   const l = Store.get('tasks', []).filter(t => t.due === Calendar.sel);
   p.innerHTML = `<h3>${Calendar.sel}</h3><ul class="list">${l.map(t => `<li class="item ${t.status === 'Done' ? 'done' : ''}"><span class="grow">${esc(t.title)}</span><span class="badge">${t.status}</span>${Calendar.rowExtras.map(f => f(t)).join('')}</li>`).join('') || '<li class="muted">Nema zadataka za ovaj dan.</li>'}</ul>${Calendar.panelExtras.map(f => f()).join('')}`;
 };
+Calendar.panelExtras.push(() => '<form id="c-add" class="row" style="margin-top:12px"><input id="c-t" class="grow" placeholder="Dodaj zadatak za ovaj dan" required><button class="btn">+</button></form>');
+document.addEventListener('submit', e => {
+  if (e.target.id !== 'c-add') return; e.preventDefault();
+  const l = Store.get('tasks', []);
+  l.push({ id: Store.uid(), title: $('#c-t').value.trim(), due: Calendar.sel, prio: 'Medium', status: 'Todo', subject: '', created: Date.now() });
+  Store.set('tasks', l); Calendar.render(); Calendar.panel(); toast('Zadatak dodan');
+});
