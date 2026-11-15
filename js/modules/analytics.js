@@ -35,3 +35,11 @@ Analytics.drawers.push(({ tasks }) => {
     options: { cutout: '65%' }
   });
 });
+Analytics.drawers.push(({ tasks, subj }) => {
+  if (!subj.length) return;
+  Analytics.chart('ch-subj', 'Napredak po predmetima (%)', {
+    type: 'bar',
+    data: { labels: subj.map(s => s.name), datasets: [{ data: subj.map(s => { const l = tasks.filter(t => t.subject === s.id); return l.length ? Math.round(l.filter(t => t.status === 'Done').length / l.length * 100) : 0; }), backgroundColor: subj.map(s => s.color), borderRadius: 6 }] },
+    options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { min: 0, max: 100 } } }
+  });
+});
