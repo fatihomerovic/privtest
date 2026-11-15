@@ -43,3 +43,8 @@ Analytics.drawers.push(({ tasks, subj }) => {
     options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { min: 0, max: 100 } } }
   });
 });
+if (typeof Chart !== 'undefined') { Chart.defaults.color = '#9CA3AF'; Chart.defaults.borderColor = '#232A3B'; Chart.defaults.font.family = 'Inter, sans-serif'; }
+{ const r = Analytics.render; Analytics.render = function () {
+  r(); const d = Analytics.data();
+  if (!d.tasks.length && !d.ses.length) $('#a-charts').insertAdjacentHTML('afterbegin', '<p class="muted">Još nema podataka — dodaj zadatke ili pokreni fokus sesiju.</p>');
+}; }
