@@ -38,3 +38,6 @@ Tasks.actions.status = id => { const t = Tasks.all().find(x => x.id === id); Tas
 Tasks.rowExtras.unshift(t => `<button class="badge st" data-act="status" data-id="${t.id}" title="Promijeni status">${t.status}</button>`);
 Tasks.toolbars.push(() => '<input data-k="q" class="grow" placeholder="Pretraži zadatke...">');
 Tasks.filterFns.push(t => t.title.toLowerCase().includes(Tasks.state.q.toLowerCase()));
+Tasks.toolbars.push(() => '<select data-k="status"><option value="all">Svi statusi</option><option>Todo</option><option>In Progress</option><option>Done</option></select><select data-k="prio"><option value="all">Svi prioriteti</option><option>Low</option><option>Medium</option><option>High</option></select>');
+Tasks.filterFns.push(t => Tasks.state.status === 'all' || t.status === Tasks.state.status);
+Tasks.filterFns.push(t => Tasks.state.prio === 'all' || t.prio === Tasks.state.prio);
