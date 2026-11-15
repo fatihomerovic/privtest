@@ -30,3 +30,9 @@ Calendar.cellExtras.push(key => {
   const n = Store.get('tasks', []).filter(t => t.due === key && t.status !== 'Done').length;
   return n ? `<i class="dot ${key < todayStr() ? 'late' : ''}" title="${n} zadatak(a)"></i>` : '';
 });
+Calendar.pick = key => { Calendar.sel = key; Calendar.render(); Calendar.panel(); };
+Calendar.panel = function () {
+  const p = $('#c-day'); p.hidden = false;
+  const l = Store.get('tasks', []).filter(t => t.due === Calendar.sel);
+  p.innerHTML = `<h3>${Calendar.sel}</h3><ul class="list">${l.map(t => `<li class="item ${t.status === 'Done' ? 'done' : ''}"><span class="grow">${esc(t.title)}</span><span class="badge">${t.status}</span>${Calendar.rowExtras.map(f => f(t)).join('')}</li>`).join('') || '<li class="muted">Nema zadataka za ovaj dan.</li>'}</ul>${Calendar.panelExtras.map(f => f()).join('')}`;
+};
