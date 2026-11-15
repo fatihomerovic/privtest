@@ -45,3 +45,8 @@ Tasks.subjOpts = () => '<option value="">Predmet</option>' + Store.get('subjects
 Tasks.formExtras.push(() => `<select id="t-subj">${Tasks.subjOpts()}</select>`);
 Tasks.rowExtras.push(t => { const s = Store.get('subjects', []).find(x => x.id === t.subject); return s ? `<span class="chip" style="--c:${esc(s.color)}">${esc(s.name)}</span>` : ''; });
 { const r = Tasks.render; Tasks.render = function () { const sel = $('#t-subj'); if (sel) { const v = sel.value; sel.innerHTML = Tasks.subjOpts(); sel.value = v; } r(); }; }
+Tasks.rowExtras.push(t => t.due && t.status !== 'Done' && t.due < todayStr() ? '<span class="badge p-High">Istekao</span>' : '');
+addEventListener('DOMContentLoaded', () => {
+  const n = Tasks.all().filter(t => t.status !== 'Done' && t.due && t.due <= todayStr()).length;
+  if (n) setTimeout(() => toast(`⏰ ${n} zadatak(a) s rokom danas ili ranije`), 600);
+});
