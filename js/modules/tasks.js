@@ -27,3 +27,8 @@ Tasks.update = (id, patch) => { Tasks.save(Tasks.all().map(t => t.id === id ? { 
 Tasks.actions.done = id => { const t = Tasks.all().find(x => x.id === id); Tasks.update(id, { status: t.status === 'Done' ? 'Todo' : 'Done' }); };
 Tasks.actions.del = id => { Tasks.save(Tasks.all().filter(t => t.id !== id)); Tasks.render(); toast('Zadatak obrisan'); };
 Tasks.rowExtras.push(t => `<button class="btn ghost" data-act="done" data-id="${t.id}" title="Završi">${t.status === 'Done' ? '↩' : '✓'}</button><button class="btn ghost" data-act="del" data-id="${t.id}" title="Obriši">✕</button>`);
+Tasks.actions.edit = id => {
+  const t = Tasks.all().find(x => x.id === id); const n = prompt('Izmijeni zadatak', t.title);
+  if (n && n.trim()) { Tasks.update(id, { title: n.trim() }); toast('Zadatak izmijenjen'); }
+};
+Tasks.rowExtras.unshift(t => `<button class="btn ghost" data-act="edit" data-id="${t.id}" title="Uredi">✎</button>`);
