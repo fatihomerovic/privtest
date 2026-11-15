@@ -43,3 +43,9 @@ document.addEventListener('submit', e => {
   l.push({ id: Store.uid(), title: $('#c-t').value.trim(), due: Calendar.sel, prio: 'Medium', status: 'Todo', subject: '', created: Date.now() });
   Store.set('tasks', l); Calendar.render(); Calendar.panel(); toast('Zadatak dodan');
 });
+Calendar.rowExtras.push(t => `<button class="btn ghost" data-cal-done="${t.id}">${t.status === 'Done' ? '↩' : '✓'}</button>`);
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-cal-done]'); if (!b) return;
+  Store.set('tasks', Store.get('tasks', []).map(t => t.id === b.dataset.calDone ? { ...t, status: t.status === 'Done' ? 'Todo' : 'Done' } : t));
+  Calendar.render(); Calendar.panel();
+});
