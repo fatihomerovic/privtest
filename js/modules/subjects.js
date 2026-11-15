@@ -22,3 +22,8 @@ Subjects.init = function () {
 };
 Subjects.card = s => `<div class="card subj" style="--c:${esc(s.color)}"><div class="row"><b class="grow">${esc(s.name)}</b><button class="btn ghost" data-edit="${s.id}" title="Uredi">✎</button><button class="btn ghost" data-del="${s.id}" title="Obriši">✕</button></div>${Subjects.extras.map(f => f(s)).join('')}</div>`;
 Subjects.render = () => { $('#subj-list').innerHTML = Subjects.all().map(Subjects.card).join('') || '<p class="muted">Dodaj prvi predmet.</p>'; };
+Subjects.extras.push(s => {
+  const l = Store.get('tasks', []).filter(t => t.subject === s.id);
+  const d = l.filter(t => t.status === 'Done').length, p = l.length ? Math.round(d / l.length * 100) : 0;
+  return `<div class="bar"><i style="width:${p}%;background:${esc(s.color)}"></i></div><small class="muted">${d}/${l.length} završeno (${p}%)</small>`;
+});
