@@ -1,0 +1,7 @@
+:root{
+  --bg:#0B0D12; --card:#121620; --surface-2:#1C2230; --border:#232A3B;
+  --accent:#8B5CF6; --accent-2:#A78BFA; --text:#E5E7EB; --muted:#9CA3AF;
+  --danger:#F87171; --ok:#34D399; --warn:#FBBF24;
+  --radius:14px; --gap:16px;
+  --font-body:'Inter',system-ui,sans-serif; --font-head:'Montserrat',system-ui,sans-serif;
+}

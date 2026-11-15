@@ -1,0 +1,20 @@
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.5}
+h1,h2,h3{font-family:var(--font-head);letter-spacing:.02em}
+h1{font-size:1.8rem;margin-bottom:4px} h2{margin-bottom:var(--gap)} h3{font-size:1rem;margin-bottom:12px}
+a{color:inherit;text-decoration:none}
+input,select,textarea,button{font:inherit;color:inherit}
+input,select,textarea{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;width:100%}
+.grad{background:linear-gradient(90deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.view[hidden]{display:none}
+/* Responsivnost i pristupačnost */
+input,select{max-width:100%}
+#top-search{width:220px}
+.view:not([hidden]){animation:in .3s}
+.ring{max-width:70vw}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+@media(max-width:860px){#top-search{width:100%;flex:1;min-width:0}#today{display:none}}
+@media(max-width:600px){h1{font-size:1.4rem}.card{padding:14px}.item{flex-wrap:wrap}.row>input.grow{min-width:60%}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

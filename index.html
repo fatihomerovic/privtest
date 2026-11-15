@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Altasera — student productivity platforma. Per aspera ad astra.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cpath d=%27M16 2 3 30h7l6-13 6 13h7z%27 fill=%27%238B5CF6%27/%3E%3C/svg%3E">
+  <title>Altasera — Per aspera ad astra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/dashboard.css">
+  <link rel="stylesheet" href="css/pages/tasks.css">
+  <link rel="stylesheet" href="css/pages/subjects.css">
+  <link rel="stylesheet" href="css/pages/focus.css">
+  <link rel="stylesheet" href="css/pages/notes.css">
+  <link rel="stylesheet" href="css/pages/calendar.css">
+  <link rel="stylesheet" href="css/pages/analytics.css">
+  <link rel="stylesheet" href="css/pages/settings.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" width="30" aria-hidden="true"><path d="M16 2 3 30h7l6-13 6 13h7z" fill="#8B5CF6"/><path d="M8 22c8-2 14-6 20-12-5 9-12 14-20 12z" fill="#A78BFA"/></svg>
+      <div><b>ALTASERA</b><small>Per aspera ad astra</small></div>
+    </div>
+    <nav id="nav">
+      <a href="#dashboard" data-view="dashboard">Dashboard</a>
+      <a href="#tasks" data-view="tasks">Zadaci</a>
+      <a href="#subjects" data-view="subjects">Predmeti</a>
+      <a href="#focus" data-view="focus">Focus</a>
+      <a href="#notes" data-view="notes">Bilješke</a>
+      <a href="#calendar" data-view="calendar">Kalendar</a>
+      <a href="#analytics" data-view="analytics">Analitika</a>
+      <a href="#settings" data-view="settings">Postavke</a>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button id="menu-btn" class="btn ghost" aria-label="Meni">☰</button>
+      <input id="top-search" type="search" placeholder="Pretraži zadatke…" aria-label="Pretraga zadataka">
+      <span id="today" class="muted grow"></span>
+      <div class="avatar">A</div>
+    </header>
+    <main>
+      <section id="view-dashboard" class="view" hidden></section>
+      <section id="view-tasks" class="view" hidden></section>
+      <section id="view-subjects" class="view" hidden></section>
+      <section id="view-focus" class="view" hidden></section>
+      <section id="view-notes" class="view" hidden></section>
+      <section id="view-calendar" class="view" hidden></section>
+      <section id="view-analytics" class="view" hidden></section>
+      <section id="view-settings" class="view" hidden></section>
+    </main>
+  </div>
+  <div id="toasts"></div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/utils/storage.js"></script>
+  <script src="js/utils/helpers.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/modules/dashboard.js"></script>
+  <script src="js/modules/tasks.js"></script>
+  <script src="js/modules/subjects.js"></script>
+  <script src="js/modules/focus.js"></script>
+  <script src="js/modules/notes.js"></script>
+  <script src="js/modules/calendar.js"></script>
+  <script src="js/modules/analytics.js"></script>
+  <script src="js/modules/settings.js"></script>
+  <script src="js/modules/extras.js"></script>
+</body>
+</html>
